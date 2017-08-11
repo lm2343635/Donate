@@ -11,8 +11,8 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:property-placeholder location="WEB-INF/config.properties"/>
-    <context:component-scan base-package="com.xwkj.project.dao"/>
-    <context:component-scan base-package="com.xwkj.project.service"/>
+    <context:component-scan base-package="com.xwkj.donate.dao"/>
+    <context:component-scan base-package="com.xwkj.donate.service"/>
     <import resource="dwr.xml"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
@@ -28,7 +28,7 @@
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="com.xwkj.project.domain"/>
+        <property name="packagesToScan" value="com.xwkj.donate.domain"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
