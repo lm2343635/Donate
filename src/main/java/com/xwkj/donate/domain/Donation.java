@@ -26,6 +26,12 @@ public class Donation implements Serializable {
     @Column(nullable = false)
     private Integer money;
 
+    @Column(nullable = false)
+    private Boolean payed;
+
+    @Column
+    private Long payAt;
+
     @ManyToOne
     @JoinColumn(name = "wid", nullable = false)
     private Wechater wechater;
@@ -68,6 +74,22 @@ public class Donation implements Serializable {
 
     public void setMoney(Integer money) {
         this.money = money;
+    }
+
+    public Boolean getPayed() {
+        return payed;
+    }
+
+    public void setPayed(Boolean payed) {
+        this.payed = payed;
+    }
+
+    public Long getPayAt() {
+        return payAt;
+    }
+
+    public void setPayAt(Long payAt) {
+        this.payAt = payAt;
     }
 
     public Wechater getWechater() {
