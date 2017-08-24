@@ -4,13 +4,14 @@ import net.sf.json.JSONObject;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.Base64;
 
 @Entity
 @Table(name = "donate_wechater")
-public class Wechater {
+public class Wechater implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
