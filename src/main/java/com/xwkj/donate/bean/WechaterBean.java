@@ -1,6 +1,5 @@
 package com.xwkj.donate.bean;
 
-import com.xwkj.deduct.domain.Wechater;
 import com.xwkj.donate.domain.Wechater;
 import org.directwebremoting.annotations.DataTransferObject;
 

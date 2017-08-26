@@ -21,6 +21,12 @@ public class Donation implements Serializable {
     private String name;
 
     @Column(nullable = false)
+    private Integer year;
+
+    @Column(nullable = false)
+    private Boolean sex;
+
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -58,6 +64,22 @@ public class Donation implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Boolean getSex() {
+        return sex;
+    }
+
+    public void setSex(Boolean sex) {
+        this.sex = sex;
     }
 
     public String getEmail() {

@@ -5,6 +5,7 @@ import com.xwkj.donate.domain.Donation;
 import com.xwkj.donate.domain.Wechater;
 import com.xwkj.donate.service.DonationManager;
 import com.xwkj.donate.service.common.ManagerTemplate;
+import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @RemoteProxy(name = "DonationManager")
 public class DonationManagerImpl extends ManagerTemplate implements DonationManager {
 
-    @Override
+    @RemoteMethod
     public String createDonation(String name, String email, int money, HttpSession session) {
         Wechater wechater = getWechaterFromSession(session);
         if (wechater == null) {
@@ -31,7 +32,7 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         return donationDao.save(donation);
     }
 
-    @Override
+    @RemoteMethod
     public boolean pay(String did) {
         Donation donation = donationDao.get(did);
         if (donation == null) {

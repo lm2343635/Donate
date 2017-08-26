@@ -1,0 +1,96 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>校友登记</title>
+    <link rel="Shortcut Icon" href="static/images/favicon.ico">
+    <link rel="stylesheet" href="/static/css/weui.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/mengular.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mengular.js"></script>
+    <script src="/static/js/weui.min.js"></script>
+    <script src="/static/js/tools.js"></script>
+    <script src="/dwr/engine.js"></script>
+    <script src="/dwr/interface/DonationManager.js"></script>
+    <script src="/static/js/referrer/register.js"></script>
+    <style>
+        body {
+            background-image: url("/static/images/register-bg.jpg");
+            background-size: 100% 100%;
+            margin: 0;
+        }
+
+        #top-img {
+            width: 100%;
+        }
+
+        #bottom-img {
+            width: 100%;
+            position: absolute;
+            bottom: 50px;
+            z-index: -1;
+        }
+
+        #donate-register {
+            margin: 5px;
+        }
+
+        .weui-tab__panel {
+            height: auto;
+        }
+
+        .weui-cells_form {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+
+<img id="top-img" src="/static/images/register-top.png">
+<div class="weui-tab__panel">
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+            <div class="weui-cell__bd">
+                <input id="donate-name" class="weui-input" type="text">
+            </div>
+        </div>
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+            <div class="weui-cell__hd">
+                <label class="weui-label">性别</label>
+            </div>
+            <div class="weui-cell__bd">
+                <select id="donate-sex" class="weui-select" name="select2">
+                    <option value="true">绅士</option>
+                    <option value="false">淑女</option>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">入校时间</label></div>
+            <div class="weui-cell__bd">
+                <input id="donate-year" class="weui-input" type="number" pattern="[0-9]*">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">邮箱</label></div>
+            <div class="weui-cell__bd">
+                <input id="donate-email" class="weui-input" type="email" value="">
+            </div>
+        </div>
+    </div>
+    <div class="weui-btn-area">
+        <button id="donate-register" class="weui-btn weui-btn_warn">提交信息</button>
+    </div>
+</div>
+<img id="bottom-img" src="/static/images/register-bottom.png">
+
+<div id="foot">
+    <script>$("#foot").load("foot.html");</script>
+</div>
+</body>
+</html>

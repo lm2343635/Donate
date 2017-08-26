@@ -11,6 +11,7 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:property-placeholder location="WEB-INF/config.properties"/>
+    <context:component-scan base-package="com.xwkj.donate.component"/>
     <context:component-scan base-package="com.xwkj.donate.dao"/>
     <context:component-scan base-package="com.xwkj.donate.service"/>
     <import resource="dwr.xml"/>
