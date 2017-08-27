@@ -8,6 +8,7 @@ import com.xwkj.donate.service.common.ManagerTemplate;
 import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,23 +17,20 @@ import javax.servlet.http.HttpSession;
 public class DonationManagerImpl extends ManagerTemplate implements DonationManager {
 
     @RemoteMethod
-    public String createDonation(String name, String email, int money, HttpSession session) {
-        Wechater wechater = getWechaterFromSession(session);
-        if (wechater == null) {
-            Debug.error("Cannot find a wechat user from session.");
-            return null;
-        }
+    @Transactional
+    public String register(String name, boolean sex, int year, String email) {
         Donation donation = new Donation();
         donation.setCreateAt(System.currentTimeMillis());
         donation.setName(name);
         donation.setEmail(email);
-        donation.setMoney(money);
+        donation.setSex(sex);
+        donation.setYear(year);
         donation.setPayed(false);
-        donation.setWechater(wechater);
         return donationDao.save(donation);
     }
 
     @RemoteMethod
+    @Transactional
     public boolean pay(String did) {
         Donation donation = donationDao.get(did);
         if (donation == null) {

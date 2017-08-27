@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/static/css/weui.min.css">
     <link rel="stylesheet" href="/static/css/buttons.min.css">
     <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/tools.js"></script>
+    <script src="/static/js/pay.js"></script>
     <style>
         body {
             background-image: url("/static/images/pay-bg.jpg");
@@ -25,14 +27,46 @@
             bottom: 50px;
         }
 
+        #pay-buttons {
+            margin: 0 auto;
+        }
+
+        #pay-buttons div {
+            width: 50%;
+            float: left;
+        }
+
+        #pay-buttons button {
+            height: 100px;
+            width: 100px;
+            border-radius: 50px;
+            border: none;
+            font-size: 18px;
+            color: #fff;
+            background-color: #ce3c39;
+        }
+
+        #pay-buttons .left button {
+            float: right;
+            margin-right: 5px;
+        }
+
+        #pay-buttons .right button {
+            margin-left: 5px;
+        }
+
     </style>
 </head>
 <body>
 <img id="top-img" src="/static/images/pay-top.png">
 <img id="bottom-img" src="/static/images/pay-bottom.png">
 <div id="pay-buttons">
-    <button>110元</button>
-    <button>其他金额</button>
+    <div class="left">
+        <button>110元</button>
+    </div>
+    <div class="right">
+        <button>其他金额</button>
+    </div>
 </div>
 <div id="foot">
     <script>$("#foot").load("foot.html");</script>

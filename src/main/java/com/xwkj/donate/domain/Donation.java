@@ -29,7 +29,7 @@ public class Donation implements Serializable {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private Integer money;
 
     @Column(nullable = false)
@@ -39,7 +39,7 @@ public class Donation implements Serializable {
     private Long payAt;
 
     @ManyToOne
-    @JoinColumn(name = "wid", nullable = false)
+    @JoinColumn(name = "wid")
     private Wechater wechater;
 
     public String getDid() {

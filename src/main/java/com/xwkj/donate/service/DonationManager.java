@@ -5,15 +5,14 @@ import javax.servlet.http.HttpSession;
 public interface DonationManager {
 
     /**
-     * Create a donation order without paying.
-     *
+     * Register and create a donation.
      * @param name
+     * @param sex
+     * @param year
      * @param email
-     * @param money
-     * @param session
      * @return
      */
-    String createDonation(String name, String email, int money, HttpSession session);
+    String register(String name, boolean sex, int year, String email);
 
     /**
      * Pay a donation order after receiving the callback from Wechat pay.
