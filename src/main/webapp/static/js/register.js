@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $("#donate-register").click(function() {
         var name = $("#donate-name").val();
         var sex = $("#donate-sex").val();
@@ -17,4 +18,5 @@ $(document).ready(function () {
             location.href = "money.html?did=" + did;
         });
     });
+
 });

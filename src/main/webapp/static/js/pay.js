@@ -11,7 +11,7 @@ $(document).ready(function () {
         $("#donation-info").fillText({
             money: donation.money / 100,
             name: donation.name,
-            sex: donation.sex ? "绅士" : "淑女",
+            sex: donation.sex ? "先生" : "女士",
             year: donation.year,
             email: donation.email
         });
@@ -49,8 +49,14 @@ $(document).ready(function () {
                         signType: "MD5", // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
                         paySign: result.paySign, // 支付签名
                         success: function (res) {
-                            weui.confirm("支付成功！", function () {
-                                location.href = "certificate.html?did=" + did;
+                            weui.confirm("支付成功！", {
+                                buttons: [{
+                                    label: "查看捐赠证书",
+                                    type: "primary",
+                                    onClick: function () {
+                                        location.href = "certificate.html?did=" + did;
+                                    }
+                                }]
                             });
                         }
                     });
