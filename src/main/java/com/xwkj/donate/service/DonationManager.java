@@ -9,6 +9,7 @@ public interface DonationManager {
     public static final String DONATION_FLAG = "80815ff80e214be0015e214d008c1d00";
 
     /**
+     * Get donation by physical id.
      *
      * @param did
      * @return
@@ -16,7 +17,16 @@ public interface DonationManager {
     DonationBean get(String did);
 
     /**
+     * Get donation by trade no.
+     *
+     * @param tradeNo
+     * @return
+     */
+    DonationBean getByTradeNo(String tradeNo);
+
+    /**
      * Register and create a donation.
+     *
      * @param name
      * @param sex
      * @param year
@@ -26,12 +36,20 @@ public interface DonationManager {
     String register(String name, boolean sex, int year, String email);
 
     /**
+     * Set money for a donation.
      *
      * @param did
      * @return
      */
     boolean setMoney(String did, int money);
 
-    boolean payed(String did);
+    /**
+     * Call this method after paying successfully.
+     *
+     * @param did
+     * @param transactionId
+     * @return
+     */
+    boolean payed(String did, String transactionId);
 
 }

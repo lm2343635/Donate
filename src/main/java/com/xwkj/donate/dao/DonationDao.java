@@ -5,5 +5,12 @@ import com.xwkj.donate.domain.Donation;
 
 public interface DonationDao extends BaseDao<Donation> {
 
+    /**
+     * Get a donation by trade no.
+     *
+     * @param tradeNo
+     * @return
+     */
+    Donation getByTradeNo(String tradeNo);
 
 }

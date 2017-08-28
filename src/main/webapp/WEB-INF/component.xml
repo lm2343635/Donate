@@ -15,6 +15,7 @@
         <property name="partnerId" value="${app.partnerId}"/>
         <property name="partnerKey" value="${app.partnerKey}"/>
         <property name="authProxy" value="${app.auth.proxy}"/>
+        <property name="protocol" value="${app.protocol}"/>
         <property name="domain" value="${app.domain}"/>
     </bean>
 

@@ -1,7 +1,7 @@
 function checkSession(done) {
     UserManager.checkSession(function (user) {
         if (user == null) {
-            location.href = "session.html";
+            location.href = "../../admin/session.html";
             return null;
         } else {
             done(user);
@@ -12,7 +12,7 @@ function checkSession(done) {
 function checkAdminSession(done) {
     AdminManager.checkSession(function (username) {
         if (username == null) {
-            location.href = "session.html";
+            location.href = "../../admin/session.html";
         } else {
             done(username);
         }

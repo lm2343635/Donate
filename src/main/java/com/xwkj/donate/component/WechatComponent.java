@@ -15,6 +15,7 @@ public class WechatComponent {
     private String partnerId;
     private String partnerKey;
     private String authProxy;
+    private String protocol;
     private String domain;
 
     // Token and ticket
@@ -89,6 +90,14 @@ public class WechatComponent {
 
     public String getAuthProxy() {
         return authProxy;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
     }
 
     public String getDomain() {

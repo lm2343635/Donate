@@ -17,6 +17,9 @@ public class DonationBean {
     private int money;
     private boolean payed;
     private Date payAt;
+    private String nonce;
+    private String tradeNo;
+    private String transactionId;
     private String wid;
 
     public String getDid() {
@@ -83,6 +86,22 @@ public class DonationBean {
         this.payed = payed;
     }
 
+    public String getNonce() {
+        return nonce;
+    }
+
+    public void setNonce(String nonce) {
+        this.nonce = nonce;
+    }
+
+    public String getTradeNo() {
+        return tradeNo;
+    }
+
+    public void setTradeNo(String tradeNo) {
+        this.tradeNo = tradeNo;
+    }
+
     public Date getPayAt() {
         return payAt;
     }
@@ -99,7 +118,7 @@ public class DonationBean {
         this.wid = wid;
     }
 
-    public DonationBean(Donation donation) {
+    public DonationBean(Donation donation, boolean safe) {
         this.did = donation.getDid();
         this.createAt = new Date(donation.getCreateAt());
         this.name = donation.getName();
@@ -110,6 +129,11 @@ public class DonationBean {
         this.payed = donation.getPayed();
         this.payAt = donation.getPayAt() == null ? null : new Date(donation.getPayAt());
         this.wid = donation.getWechater() == null ? null : donation.getWechater().getWid();
+        if (!safe) {
+            this.nonce = donation.getNonce() == null ? null : donation.getNonce();
+            this.tradeNo = donation.getTradeNo() == null ? null : donation.getTradeNo();
+            this.transactionId = donation.getTransactionId() == null ? null : donation.getTransactionId();
+        }
     }
 
 }

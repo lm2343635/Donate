@@ -34,7 +34,7 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
             Debug.error("Cannot find the donation by this did.");
             return null;
         }
-        return new DonationBean(donation);
+        return new DonationBean(donation, true);
     }
 
     @RemoteMethod
@@ -67,9 +67,16 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         return true;
     }
 
-    @RemoteMethod
+    public DonationBean getByTradeNo(String tradeNo) {
+        Donation donation = donationDao.getByTradeNo(tradeNo);
+        if (donation == null) {
+            return null;
+        }
+        return new DonationBean(donation, false);
+    }
+
     @Transactional
-    public boolean payed(String did) {
+    public boolean payed(String did, String transactionId) {
         Donation donation = donationDao.get(did);
         if (donation == null) {
             Debug.error("Cannot get a donation by this did.");
@@ -77,9 +84,9 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         }
         donation.setPayed(true);
         donation.setPayAt(System.currentTimeMillis());
+        donation.setTransactionId(transactionId);
         donationDao.update(donation);
         return true;
     }
-
 
 }

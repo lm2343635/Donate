@@ -26,7 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
@@ -122,10 +121,12 @@ public class WechaterManagerImpl extends ManagerTemplate implements WechaterMana
         String body = "龙泉中学110周年校庆" + donation.getMoney() / 100.0 + "元";
         String out_trade_no = donation.getCreateAt() + MathTool.getRandomStr(4);
         int total_fee = donation.getMoney();
-        //订单生成的机器 IP
         String spbill_create_ip = request.getRemoteAddr();
-        //这里notify_url是 支付完成后微信发给该链接信息，可以判断会员是否支付成功，改变订单状态等。
-        String notify_url = "http://" + wechatComponent.getDomain() + "/wechat/payed";
+        // Callback url after paying successfully.
+        String notify_url = wechatComponent.getProtocol() + "://" + wechatComponent.getDomain() + "/wechat/payed";
+
+        System.out.println(notify_url);
+
         SortedMap<String, String> packageParams = new TreeMap<String, String>();
         packageParams.put("appid",wechatComponent.getAppId());
         packageParams.put("mch_id", mch_id);
@@ -170,21 +171,22 @@ public class WechaterManagerImpl extends ManagerTemplate implements WechaterMana
         }
         String prepayId = root.elementText("prepay_id");
 
-        // Save nonce to persitent store.
+        // Save nonce, trade no and wechater to persitent store.
         donation.setNonce(nonce_str);
         donation.setTradeNo(out_trade_no);
+        Wechater wechater = wechaterDao.getByOpenId(openid);
+        donation.setWechater(wechater);
         donationDao.update(donation);
 
         // Create timestamp
         String timestamp = String.valueOf(System.currentTimeMillis());
-        //生成签名
+        // Create sign for JSAPI pay.
         String str = "appId=" + wechatComponent.getAppId()
                 + "&nonceStr=" + nonce_str
                 + "&package=prepay_id=" + prepayId
                 + "&signType=MD5"
                 + "&timeStamp=" + timestamp
                 + "&key=" + wechatComponent.getPartnerKey();
-        System.out.println(str);
         String paySign = MD5Util.MD5Encode(str, "UTF-8");
         return new JSAPIResult(nonce_str, prepayId, timestamp, paySign);
     }

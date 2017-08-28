@@ -8,6 +8,19 @@ $(document).ready(function () {
             return;
         }
 
+        $("#donation-info").fillText({
+            money: donation.money / 100,
+            name: donation.name,
+            sex: donation.sex ? "绅士" : "淑女",
+            year: donation.year,
+            email: donation.email
+        });
+
+        if (donation.payed) {
+            weui.alert("已支付！");
+            return;
+        }
+
         WechaterManager.getJsConfig(window.location.href, function(config) {
 
             wx.config({
@@ -37,7 +50,7 @@ $(document).ready(function () {
                         paySign: result.paySign, // 支付签名
                         success: function (res) {
                             weui.confirm("支付成功！", function () {
-
+                                location.href = "certificate.html?did=" + did;
                             });
                         }
                     });

@@ -44,6 +44,9 @@ public class Donation implements Serializable {
     @Column
     private String tradeNo;
 
+    @Column
+    private String transactionId;
+
     @ManyToOne
     @JoinColumn(name = "wid")
     private Wechater wechater;
@@ -134,6 +137,14 @@ public class Donation implements Serializable {
 
     public void setTradeNo(String tradeNo) {
         this.tradeNo = tradeNo;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
     public Wechater getWechater() {
