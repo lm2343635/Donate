@@ -1,5 +1,6 @@
 package com.xwkj.common.util;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.*;
@@ -307,6 +308,39 @@ public class HttpTool {
             ip = request.getRemoteAddr();
         }
         return ip;
+    }
+
+    public static String postWithString(String requestUrl, String output) {
+        try{
+            URL url = new URL(requestUrl);
+            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setUseCaches(false);
+            connection.setRequestMethod("POST");
+            if (null != output) {
+                OutputStream outputStream = connection.getOutputStream();
+                outputStream.write(output.getBytes("UTF-8"));
+                outputStream.close();
+            }
+            InputStream inputStream = connection.getInputStream();
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String str = null;
+            StringBuffer buffer = new StringBuffer();
+            while ((str = bufferedReader.readLine()) != null) {
+                buffer.append(str);
+            }
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
+            inputStream = null;
+            connection.disconnect();
+            return buffer.toString();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }

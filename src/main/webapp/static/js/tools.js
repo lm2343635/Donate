@@ -19,11 +19,6 @@ function checkAdminSession(done) {
     });
 }
 
-$.messager.model = {
-    ok: {text: "确定", classed: 'btn-danger'},
-    cancel: {text: "取消", classed: 'btn-default'}
-};
-
 var BROSWER_PC = "pc";
 var BROSWER_WAP = "wap";
 

@@ -38,6 +38,12 @@ public class Donation implements Serializable {
     @Column
     private Long payAt;
 
+    @Column
+    private String nonce;
+
+    @Column
+    private String tradeNo;
+
     @ManyToOne
     @JoinColumn(name = "wid")
     private Wechater wechater;
@@ -112,6 +118,22 @@ public class Donation implements Serializable {
 
     public void setPayAt(Long payAt) {
         this.payAt = payAt;
+    }
+
+    public String getNonce() {
+        return nonce;
+    }
+
+    public void setNonce(String nonce) {
+        this.nonce = nonce;
+    }
+
+    public String getTradeNo() {
+        return tradeNo;
+    }
+
+    public void setTradeNo(String tradeNo) {
+        this.tradeNo = tradeNo;
     }
 
     public Wechater getWechater() {

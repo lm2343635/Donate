@@ -12,7 +12,10 @@ public class WechatComponent {
 
     private String appId;
     private String appSecret;
+    private String partnerId;
+    private String partnerKey;
     private String authProxy;
+    private String domain;
 
     // Token and ticket
     private String token = null;
@@ -32,12 +35,68 @@ public class WechatComponent {
         this.appSecret = appSecret;
     }
 
+    public static int getRequestInterval() {
+        return RequestInterval;
+    }
+
+    public String getAppSecret() {
+        return appSecret;
+    }
+
+    public String getPartnerId() {
+        return partnerId;
+    }
+
+    public void setPartnerId(String partnerId) {
+        this.partnerId = partnerId;
+    }
+
+    public String getPartnerKey() {
+        return partnerKey;
+    }
+
+    public void setPartnerKey(String partnerKey) {
+        this.partnerKey = partnerKey;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public long getTokenUpdate() {
+        return tokenUpdate;
+    }
+
+    public void setTokenUpdate(long tokenUpdate) {
+        this.tokenUpdate = tokenUpdate;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
+
+    public long getTicketUpdate() {
+        return ticketUpdate;
+    }
+
+    public void setTicketUpdate(long ticketUpdate) {
+        this.ticketUpdate = ticketUpdate;
+    }
+
     public void setAuthProxy(String authProxy) {
         this.authProxy = authProxy;
     }
 
     public String getAuthProxy() {
         return authProxy;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     public WechatComponent() {

@@ -14,7 +14,7 @@ $(document).ready(function () {
                 return;
             }
 
-            location.href = "pay.html?did=" + did;
+            location.href = "money.html?did=" + did;
         });
     });
 });

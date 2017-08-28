@@ -1,20 +1,41 @@
 package com.xwkj.donate.service.impl;
 
+import com.xwkj.common.util.DateTool;
 import com.xwkj.common.util.Debug;
+import com.xwkj.common.util.MathTool;
+import com.xwkj.donate.bean.DonationBean;
+import com.xwkj.donate.component.WechatComponent;
 import com.xwkj.donate.domain.Donation;
 import com.xwkj.donate.domain.Wechater;
 import com.xwkj.donate.service.DonationManager;
 import com.xwkj.donate.service.common.ManagerTemplate;
+import net.sf.json.JSONObject;
+import org.directwebremoting.WebContextFactory;
 import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.UUID;
 
 @Service
 @RemoteProxy(name = "DonationManager")
 public class DonationManagerImpl extends ManagerTemplate implements DonationManager {
+
+    @RemoteMethod
+    public DonationBean get(String did) {
+        Donation donation = donationDao.get(did);
+        if (donation == null) {
+            Debug.error("Cannot find the donation by this did.");
+            return null;
+        }
+        return new DonationBean(donation);
+    }
 
     @RemoteMethod
     @Transactional
@@ -31,7 +52,24 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
 
     @RemoteMethod
     @Transactional
-    public boolean pay(String did) {
+    public boolean setMoney(String did, int money) {
+        Donation donation = donationDao.get(did);
+        if (donation == null) {
+            Debug.error("Cannot find the donation by this did.");
+            return false;
+        }
+        if (donation.getPayed() || money <= 0) {
+            Debug.error("This donation has been payed or illegal money!");
+            return false;
+        }
+        donation.setMoney(money);
+        donationDao.update(donation);
+        return true;
+    }
+
+    @RemoteMethod
+    @Transactional
+    public boolean payed(String did) {
         Donation donation = donationDao.get(did);
         if (donation == null) {
             Debug.error("Cannot get a donation by this did.");
@@ -40,7 +78,8 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         donation.setPayed(true);
         donation.setPayAt(System.currentTimeMillis());
         donationDao.update(donation);
-        return false;
+        return true;
     }
+
 
 }

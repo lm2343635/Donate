@@ -15,6 +15,7 @@
     <context:component-scan base-package="com.xwkj.donate.dao"/>
     <context:component-scan base-package="com.xwkj.donate.service"/>
     <import resource="dwr.xml"/>
+    <import resource="component.xml"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="WEB-INF/config.properties"/>
+
+    <bean id="wechatComponent" class="com.xwkj.donate.component.WechatComponent">
+        <property name="appId" value="${app.id}"/>
+        <property name="appSecret" value="${app.secret}"/>
+        <property name="partnerId" value="${app.partnerId}"/>
+        <property name="partnerKey" value="${app.partnerKey}"/>
+        <property name="authProxy" value="${app.auth.proxy}"/>
+        <property name="domain" value="${app.domain}"/>
+    </bean>
+
+</beans>
