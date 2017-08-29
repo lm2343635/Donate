@@ -1,0 +1,24 @@
+{
+  "global": {
+    "httpProtocol": "http",
+    "domain": "donate.mushare.cn"
+  },
+  "text": {
+    "tradeName": "龙泉中学110周年校庆",
+    "male": "先生",
+    "female": "女士"
+  },
+  "mail": {
+    "sender": "test@mushare.cn",
+    "smtp": "smtp.ym.163.com",
+    "username": "test@mushare.cn",
+    "password": "test_account"
+  },
+  "wechat": {
+    "appId": "",
+    "appSecret": "",
+    "partnerId": "",
+    "partnerKey": "",
+    "authProxy": ""
+  }
+}
