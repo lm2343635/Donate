@@ -1,5 +1,6 @@
 package com.xwkj.donate.service.common;
 
+import com.xwkj.donate.component.ConfigComponent;
 import com.xwkj.donate.component.WechatComponent;
 import com.xwkj.donate.dao.DonationDao;
 import com.xwkj.donate.dao.WechaterDao;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpSession;
 public class ManagerTemplate {
 
     @Autowired
+    protected ConfigComponent config;
+
+    @Autowired
     protected WechatComponent wechatComponent;
 
     @Autowired
@@ -19,6 +23,14 @@ public class ManagerTemplate {
 
     @Autowired
     protected WechaterDao wechaterDao;
+
+    public ConfigComponent getConfig() {
+        return config;
+    }
+
+    public void setConfig(ConfigComponent config) {
+        this.config = config;
+    }
 
     public WechatComponent getWechatComponent() {
         return wechatComponent;

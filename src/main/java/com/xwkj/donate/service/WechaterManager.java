@@ -53,11 +53,4 @@ public interface WechaterManager {
      */
     WechaterBean getWechater(String wid);
 
-    /**
-     * Create a JSSDK.
-     * @return
-     * @throws IOException
-     */
-    JSAPIResult createJSAPI(HttpSession session);
-
 }

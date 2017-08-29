@@ -1,6 +1,7 @@
 package com.xwkj.donate.service;
 
 import com.xwkj.donate.bean.DonationBean;
+import com.xwkj.donate.bean.JSAPIResult;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,13 +17,6 @@ public interface DonationManager {
      */
     DonationBean get(String did);
 
-    /**
-     * Get donation by trade no.
-     *
-     * @param tradeNo
-     * @return
-     */
-    DonationBean getByTradeNo(String tradeNo);
 
     /**
      * Register and create a donation.
@@ -42,6 +36,23 @@ public interface DonationManager {
      * @return
      */
     boolean setMoney(String did, int money);
+
+    /**
+     * Pay the donation by Wechat JSAPI.
+     *
+     * @param session
+     * @return
+     */
+    JSAPIResult pay(HttpSession session);
+
+
+    /**
+     * Get donation by trade no.
+     *
+     * @param tradeNo
+     * @return
+     */
+    DonationBean getByTradeNo(String tradeNo);
 
     /**
      * Call this method after paying successfully.

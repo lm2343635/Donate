@@ -31,11 +31,11 @@ public class OAuthController extends BaseController {
 
         // Create redirect URI for Wechat OAuth.
         // If auth proxy is null or empty, use OAuthController to receive code directly.
-        String redirect_uri = wechatComponent.getAuthProxy();
+        String redirect_uri = config.wechat.authProxy;
         if (redirect_uri == null || redirect_uri.equals("")) {
             redirect_uri = URLEncoder.encode(base + "/oauth/register", "utf-8");
         }
-        String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatComponent.getAppId()
+        String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechat.appId
                 + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=" + state + "#wechat_redirect";
         response.sendRedirect(url);
     }

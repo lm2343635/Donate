@@ -20,7 +20,7 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
     private JsonTool config = null;
     private JSONArray admins = null;
 
-    public JsonTool getConfig() {
+    public JsonTool getAdminConfig() {
         if (config == null) {
             String pathname = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator + ADMIN_CONFIG_PATH;
             config = new JsonTool(pathname);
@@ -30,7 +30,7 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 
     public JSONArray getAdmins() {
         if (admins == null) {
-            admins = getConfig().getJSONArray("admins");
+            admins = getAdminConfig().getJSONArray("admins");
         }
         return admins;
     }

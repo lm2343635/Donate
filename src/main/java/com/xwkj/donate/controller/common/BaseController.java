@@ -1,5 +1,6 @@
 package com.xwkj.donate.controller.common;
 
+import com.xwkj.donate.component.ConfigComponent;
 import com.xwkj.donate.component.WechatComponent;
 import com.xwkj.donate.service.DonationManager;
 import com.xwkj.donate.service.WechaterManager;
@@ -8,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BaseController {
 
     @Autowired
-    protected WechatComponent wechatComponent;
+    protected ConfigComponent config;
 
     @Autowired
     protected DonationManager donationManager;
@@ -24,12 +25,12 @@ public class BaseController {
         this.donationManager = donationManager;
     }
 
-    public WechatComponent getWechatComponent() {
-        return wechatComponent;
+    public ConfigComponent getConfig() {
+        return config;
     }
 
-    public void setWechatComponent(WechatComponent wechatComponent) {
-        this.wechatComponent = wechatComponent;
+    public void setConfig(ConfigComponent config) {
+        this.config = config;
     }
 
     public WechaterManager getWechaterManager() {

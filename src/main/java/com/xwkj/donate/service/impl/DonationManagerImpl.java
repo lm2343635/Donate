@@ -4,10 +4,12 @@ import com.xwkj.common.util.DateTool;
 import com.xwkj.common.util.Debug;
 import com.xwkj.common.util.MathTool;
 import com.xwkj.donate.bean.DonationBean;
+import com.xwkj.donate.bean.JSAPIResult;
 import com.xwkj.donate.component.WechatComponent;
 import com.xwkj.donate.domain.Donation;
 import com.xwkj.donate.domain.Wechater;
 import com.xwkj.donate.service.DonationManager;
+import com.xwkj.donate.service.WechaterManager;
 import com.xwkj.donate.service.common.ManagerTemplate;
 import net.sf.json.JSONObject;
 import org.directwebremoting.WebContextFactory;
@@ -65,6 +67,36 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         donation.setMoney(money);
         donationDao.update(donation);
         return true;
+    }
+
+    @RemoteMethod
+    @Transactional
+    public JSAPIResult pay(HttpSession session) {
+        String did = (String) session.getAttribute(DonationManager.DONATION_FLAG);
+        Donation donation = donationDao.get(did);
+        if (donation == null) {
+            Debug.error("Cannot find any donation object from session.");
+            return null;
+        }
+        String openid = (String) session.getAttribute(WechaterManager.WECHAT_USER_OPEN_ID);
+        if (openid == null) {
+            Debug.error("Cannot find openid from session.");
+            return null;
+        }
+        String tradeNo = donation.getCreateAt() + MathTool.getRandomStr(4);
+        String body = "龙泉中学110周年校庆" + donation.getMoney() / 100.0 + "元";
+
+        JSAPIResult result = wechatComponent.createJSAPI(openid, tradeNo, body, donation.getMoney(),
+                WebContextFactory.get().getHttpServletRequest(), WebContextFactory.get().getHttpServletResponse());
+
+        // Save nonce, trade no and wechater to persitent store.
+        donation.setNonce(result.getNonceStr());
+        donation.setTradeNo(tradeNo);
+        Wechater wechater = wechaterDao.getByOpenId(openid);
+        donation.setWechater(wechater);
+        donationDao.update(donation);
+
+        return result;
     }
 
     public DonationBean getByTradeNo(String tradeNo) {
