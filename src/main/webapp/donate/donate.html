@@ -6,28 +6,26 @@
     <title>共筑龙泉</title>
     <link rel="Shortcut Icon" href="static/images/favicon.ico">
     <link rel="stylesheet" href="/static/css/weui.min.css">
+    <link rel="stylesheet" href="/static/css/donate.css">
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/donate.js"></script>
     <style>
-        body {
-            background-image: url("/static/images/donate-bg.jpg");
-            background-size: 100% 100%;
-            margin: 0;
+        #main-container .top-img {
+            margin-top: 20px;
         }
-
-        #top-img {
-            width: 100%;
-        }
-
     </style>
 </head>
 <body>
-<img id="top-img" src="/static/images/donate-top.png">
-<div class="weui-btn-area">
-    <a href="register.html" class="weui-btn weui-btn_warn">提交信息</a>
+<div id="main-container">
+    <img class="bg-img" src="/static/images/donate-bg.jpg">
+    <img class="top-img" src="/static/images/donate-top.png">
+    <div class="weui-btn-area">
+        <a href="register.html" class="weui-btn weui-btn_warn">提交信息</a>
+    </div>
+    <div id="foot">
+        <script>$("#foot").load("foot.html");</script>
+    </div>
 </div>
-<div id="foot">
-    <script>$("#foot").load("foot.html");</script>
-</div>
+
 </body>
 </html>

@@ -6,6 +6,7 @@
     <title>微信支付</title>
     <link rel="Shortcut Icon" href="static/images/favicon.ico">
     <link rel="stylesheet" href="/static/css/weui.min.css">
+    <link rel="stylesheet" href="/static/css/donate.css">
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/weui.min.js"></script>
     <script src="/static/js/tools.js"></script>
@@ -16,23 +17,11 @@
     <script src="/dwr/interface/WechaterManager.js"></script>
     <script src="/static/js/pay.js"></script>
     <style>
-        body {
-            background-image: url("/static/images/pay-bg.jpg");
-            background-size: 100% 100%;
-            margin: 0;
-        }
-
-        #top-img {
+        #main-container .top-img {
             width: 200px;
-            margin: 40px auto;
+            margin: 0 auto;
+            padding-top: 40px;
             display: block;
-        }
-
-        #bottom-img {
-            width: 100%;
-            position: absolute;
-            bottom: 50px;
-            z-index: -1;
         }
 
         #donation-info {
@@ -42,34 +31,37 @@
     </style>
 </head>
 <body>
-<img id="top-img" src="/static/images/wechat-pay.png">
-<div id="donation-info" class="page__bd">
-    <div class="weui-cells">
-        <div class="weui-cell weui-cell_access">
-            <div class="weui-cell__bd">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额</div>
-            <div>@{money}元</div>
-        </div>
-        <div class="weui-cell weui-cell_access">
-            <div class="weui-cell__bd">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</div>
-            <div>@{name}</div>
-        </div>
-        <div class="weui-cell weui-cell_access">
-            <div class="weui-cell__bd">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</div>
-            <div>@{sex}</div>
-        </div>
-        <div class="weui-cell weui-cell_access">
-            <div class="weui-cell__bd">入校时间</div>
-            <div>@{year}</div>
-        </div>
-        <div class="weui-cell weui-cell_access">
-            <div class="weui-cell__bd">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</div>
-            <div>@{email}</div>
+<div id="main-container">
+    <img class="bg-img" src="/static/images/pay-bg.jpg">
+    <img class="top-img" src="/static/images/wechat-pay.png">
+    <div id="donation-info" class="page__bd">
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额</div>
+                <div>@{money}元</div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</div>
+                <div>@{name}</div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</div>
+                <div>@{sex}</div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">入校时间</div>
+                <div>@{year}</div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</div>
+                <div>@{email}</div>
+            </div>
         </div>
     </div>
-</div>
-<img id="bottom-img" src="/static/images/pay-bottom.png">
-<div id="foot">
-    <script>$("#foot").load("foot.html");</script>
+    <img class="bottom-img" src="/static/images/pay-bottom.png">
+    <div id="foot">
+        <script>$("#foot").load("foot.html");</script>
+    </div>
 </div>
 </body>
 </html>
