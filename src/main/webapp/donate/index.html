@@ -8,12 +8,39 @@
     <link rel="stylesheet" href="/static/css/weui.min.css">
     <link rel="stylesheet" href="/static/css/donate.css">
     <script src="/static/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#main-container").click(function () {
+                location.href = "donate.html";
+            });
+        });
+    </script>
+    <style>
+        #main-container {
+            cursor: pointer;
+        }
+
+        #main-container p {
+            position: absolute;
+            bottom: 60px;
+            color: #fff;
+            font-size: 24px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            text-shadow:0 0 0.2em #f4c833,
+            -0 -0 0.2em #f4c833;
+        }
+
+
+    </style>
 </head>
 <body>
 <div id="main-container">
     <img class="bg-img" src="/static/images/index-bg.jpg">
     <img class="top-img" src="/static/images/index-top.png">
     <img class="bottom-img" src="/static/images/index-bottom.png">
+    <p>点击屏幕进入下一页</p>
     <div id="foot">
         <script>$("#foot").load("foot.html");</script>
     </div>

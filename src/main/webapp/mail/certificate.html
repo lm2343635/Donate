@@ -1,0 +1,44 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>捐赠证书</title>
+    <link rel="Shortcut Icon" href="#{httpProtocol}://#{domain}/static/images/favicon.ico">
+</head>
+<body class="margin: 0;">
+<div id="certificate" style="
+            max-width: 500px;
+            min-height: 600px;
+            background-size: 100% 100%;
+            height: 100%;
+            position: relative;
+            z-index: -2;
+            margin: 0 auto;
+            background-image: url('#{httpProtocol}://#{domain}/static/images/certificate-bg.jpg');">
+    <img id="top-img" src="#{httpProtocol}://#{domain}/static/images/certificate-top.png" style="width: 100%;">
+    <div id="certificate-content" style="margin: 0 60px;">
+        <p>尊敬的#{name}#{sex}</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;承蒙您捐赠#{money}元人民币，用于资助龙泉中学教育事业的发展。隆情厚谊，至为感谢。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仅奉此证，以示纪念。</p>
+        <p id="certificate-time" style="
+            position: absolute;
+            bottom: 100px;
+            right: 65px;">二零一七年十月十日</p>
+        <img id="certificate-stamp" src="#{httpProtocol}://#{domain}/static/images/certificate-stamp.png" style="
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            bottom: 70px;
+            right: 60px;
+            z-index: -1;">
+    </div>
+    <p id="certificate-bottom" style="
+            position: absolute;
+            bottom: 50px;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;">凭此证书即可领取纪念品一份</p>
+</div>
+</body>
+</html>

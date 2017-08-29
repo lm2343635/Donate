@@ -64,6 +64,11 @@ public class WechatController extends BaseController {
         String time_end = result.get("time_end");
 
         DonationBean donation = donationManager.getByTradeNo(out_trade_no);
+        if (donation.isPayed()) {
+            response.getWriter().print("<xml><return_code>SUCCESS</return_code></xml>");
+            return;
+        }
+
         // Cannot find the donation order.
         if (donation == null) {
             System.out.println("Cannot find the donation order.");

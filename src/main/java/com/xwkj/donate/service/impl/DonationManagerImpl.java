@@ -3,6 +3,7 @@ package com.xwkj.donate.service.impl;
 import com.xwkj.common.util.DateTool;
 import com.xwkj.common.util.Debug;
 import com.xwkj.common.util.MathTool;
+import com.xwkj.common.util.MengularDocument;
 import com.xwkj.donate.bean.DonationBean;
 import com.xwkj.donate.bean.JSAPIResult;
 import com.xwkj.donate.component.WechatComponent;
@@ -84,7 +85,7 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
             return null;
         }
         String tradeNo = donation.getCreateAt() + MathTool.getRandomStr(4);
-        String body = "龙泉中学110周年校庆" + donation.getMoney() / 100.0 + "元";
+        String body = config.text.tradeName + donation.getMoney() / 100.0 + "元";
 
         JSAPIResult result = wechatComponent.createJSAPI(openid, tradeNo, body, donation.getMoney(),
                 WebContextFactory.get().getHttpServletRequest(), WebContextFactory.get().getHttpServletResponse());
@@ -114,10 +115,21 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
             Debug.error("Cannot get a donation by this did.");
             return false;
         }
+        // Update pay related attributes.
         donation.setPayed(true);
         donation.setPayAt(System.currentTimeMillis());
         donation.setTransactionId(transactionId);
         donationDao.update(donation);
+
+        // Send a certificate email to the donater.
+        MengularDocument document = new MengularDocument(config.rootPath, 0, "mail/certificate.html", null);
+        document.setValue("httpProtocol", config.global.httpProtocol);
+        document.setValue("domain", config.global.domain);
+        document.setValue("name", donation.getName());
+        document.setValue("sex", donation.getSex() ? config.text.male : config.text.female);
+        document.setValue("money", String.valueOf(donation.getMoney() / 100));
+        mailComponent.send(donation.getEmail(), config.text.tradeName, document.getDocument());
+
         return true;
     }
 
