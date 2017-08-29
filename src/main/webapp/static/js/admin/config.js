@@ -45,9 +45,9 @@ $(document).ready(function () {
 
         ConfigManager.saveConfig(JSON.stringify(config), function (success) {
             if (success) {
-                $.messager.popup("Saved!");
+                $.messager.popup("已保存！");
             } else {
-                $.messager.popup("Save fail.");
+                $.messager.popup("保存失败！");
             }
         });
     });

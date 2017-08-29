@@ -22,9 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RemoteProxy(name = "DonationManager")
@@ -131,6 +129,18 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         mailComponent.send(donation.getEmail(), config.text.tradeName, document.getDocument());
 
         return true;
+    }
+
+    @RemoteMethod
+    public List<DonationBean> getPayedDonations(HttpSession session) {
+        if (!checkAdminSession(session)) {
+            return null;
+        }
+        List<DonationBean> donationBeans = new ArrayList<DonationBean>();
+        for (Donation donation : donationDao.findPayed()) {
+            donationBeans.add(new DonationBean(donation, true));
+        }
+        return donationBeans;
     }
 
 }

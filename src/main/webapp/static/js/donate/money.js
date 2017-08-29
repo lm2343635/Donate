@@ -26,15 +26,11 @@ $(document).ready(function () {
                 onClick: function () {
                     var money = $("#pay-money").val();
                     if (!isInteger(money)) {
-                        setTimeout(function () {
-                            weui.alert("金额必须为合法整数！");
-                        }, 500);
+                        weui.topTips("金额必须为合法整数！");
                         return;
                     }
                     if (money <= 0 || money > 10000000) {
-                        setTimeout(function () {
-                            weui.alert("捐款金额在一元到一千万元之间！");
-                        }, 500);
+                        weui.topTips("捐款金额在一元到一千万元之间！");
                         return;
                     }
                     setPayMoney(money * 100);

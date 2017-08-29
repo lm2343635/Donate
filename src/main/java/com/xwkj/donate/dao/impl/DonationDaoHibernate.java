@@ -24,4 +24,9 @@ public class DonationDaoHibernate extends BaseHibernateDaoSupport<Donation> impl
         return donations.get(0);
     }
 
+    public List<Donation> findPayed() {
+        String hql = "from Donation where payed = true order by payAt desc";
+        return (List<Donation>) getHibernateTemplate().find(hql);
+    }
+
 }

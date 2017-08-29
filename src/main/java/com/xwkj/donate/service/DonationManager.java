@@ -4,6 +4,7 @@ import com.xwkj.donate.bean.DonationBean;
 import com.xwkj.donate.bean.JSAPIResult;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 public interface DonationManager {
 
@@ -62,5 +63,13 @@ public interface DonationManager {
      * @return
      */
     boolean payed(String did, String transactionId);
+
+    /**
+     * Get all payed donations for admin.
+     *
+     * @param session
+     * @return
+     */
+    List<DonationBean> getPayedDonations(HttpSession session);
 
 }

@@ -28,6 +28,11 @@
         .weui-cells_form {
             opacity: 0.7;
         }
+
+        #donate-sex-selector,
+        #donate-year-selector {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -37,34 +42,34 @@
     <div class="weui-tab__panel">
         <div class="weui-cells weui-cells_form">
             <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label></div>
-                <div class="weui-cell__bd">
-                    <input id="donate-name" class="weui-input" type="text" placeholder="请填写姓名">
-                </div>
-            </div>
-            <div class="weui-cell weui-cell_select weui-cell_select-after">
-                <div class="weui-cell__hd">
-                    <label class="weui-label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
-                </div>
-                <div class="weui-cell__bd">
-                    <select id="donate-sex" class="weui-select" name="select2">
-                        <option value="true">先生</option>
-                        <option value="false">女士</option>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">入校时间</label></div>
-                <div class="weui-cell__bd">
-                    <input id="donate-year" class="weui-input" type="number" pattern="[0-9]*" placeholder="请填写入校年份">
-                </div>
-            </div>
-            <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label></div>
                 <div class="weui-cell__bd">
                     <input id="donate-email" class="weui-input" type="email" placeholder="捐赠证书发送到该邮箱">
                 </div>
             </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label></div>
+                <div class="weui-cell__bd">
+                    <input id="donate-name" class="weui-input" type="text" placeholder="请填写姓名">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <div id="donate-sex-selector">点击选择性别</div>
+                    <input id="donate-sex" type="hidden">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">入校时间</label></div>
+                <div class="weui-cell__bd">
+                    <div id="donate-year-selector">点击选择入校年份</div>
+                    <input id="donate-year" type="hidden">
+                </div>
+            </div>
+
         </div>
         <div class="weui-btn-area">
             <button id="donate-register" class="weui-btn weui-btn_warn">提交信息</button>

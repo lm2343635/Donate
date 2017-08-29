@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-th-list" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"></button>
+            <a class="navbar-brand" href="javascript:void(0)">捐款系统</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul id="menu-bar" class="nav navbar-nav logined-btn">
+                <li><a href="donations.html">捐款详情</a></li>
+                <li><a href="config.html">系统设置</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout/admin">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script type="text/javascript">
+    var map = {
+        donations: 0,
+        config: 1
+    }
+    $("#menu-bar>li").eq(map[getPageFullName().split(".")[0]]).addClass("active");
+</script>
