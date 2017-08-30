@@ -9,7 +9,7 @@
 <body class="margin: 0;">
 <div id="certificate" style="
             max-width: 500px;
-            min-height: 600px;
+            min-height: 700px;
             background-size: 100% 100%;
             height: 100%;
             position: relative;
@@ -17,7 +17,7 @@
             margin: 0 auto;
             background-image: url('#{httpProtocol}://#{domain}/static/images/certificate-bg.jpg');">
     <img id="top-img" src="#{httpProtocol}://#{domain}/static/images/certificate-top.png" style="width: 100%;">
-    <p style="text-align: center;">证书编号：#{tradeNo}</p>
+    <p id="certificate-no" style="text-align: center;margin: 8px 0;display: block;">证书编号：#{tradeNo}</p>
     <img src="#{httpProtocol}://#{domain}/static/images/certificate-mid.png" style="width: 100%;">
     <div id="certificate-content" style="margin: 0 60px;">
         <p>尊敬的#{name}#{sex}</p>
@@ -34,8 +34,8 @@
             width: 120px;
             height: 120px;
             position: absolute;
-            bottom: 70px;
-            right: 60px;
+            bottom: 80px;
+            right: 70px;
             z-index: -1;">
     </div>
     <p id="certificate-bottom" style="
