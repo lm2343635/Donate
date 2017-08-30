@@ -109,6 +109,10 @@ public class WechatComponent {
             return null;
         }
         JSONObject userInfo = getUserInfo(openid);
+        if (userInfo.get("subscribe") == null) {
+            Debug.error("Cannot get user info. Check IP address white list.");
+            return null;
+        }
         // If user has not subscribed official account, try to get simple user info by SNS user info API.
         if (userInfo.getInt("subscribe") == 0) {
             String SNSAccessToken = result.getString("access_token");

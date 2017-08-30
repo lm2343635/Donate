@@ -8,7 +8,8 @@ $(document).ready(function () {
             return;
         }
 
-        $("#certificate-content").fillText({
+        $("#certificate").fillText({
+            tradeNo: donation.tradeNo,
             money: donation.money / 100,
             name: donation.name,
             sex: donation.sex ? "先生" : "女士"

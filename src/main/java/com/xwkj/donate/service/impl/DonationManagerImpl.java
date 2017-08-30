@@ -123,6 +123,7 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         MengularDocument document = new MengularDocument(config.rootPath, 0, "mail/certificate.html", null);
         document.setValue("httpProtocol", config.global.httpProtocol);
         document.setValue("domain", config.global.domain);
+        document.setValue("tradeNo", donation.getTradeNo());
         document.setValue("name", donation.getName());
         document.setValue("sex", donation.getSex() ? config.text.male : config.text.female);
         document.setValue("money", String.valueOf(donation.getMoney() / 100));

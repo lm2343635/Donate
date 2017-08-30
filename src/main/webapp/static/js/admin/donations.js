@@ -15,7 +15,8 @@ $(document).ready(function () {
                     sex: donation.sex ? "先生" : "女士",
                     year: donation.year,
                     email: donation.email,
-                    money: donation.money
+                    money: donation.money,
+                    tradeNo: donation.tradeNo
                 });
             }
 

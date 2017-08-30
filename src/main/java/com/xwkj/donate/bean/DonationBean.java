@@ -110,6 +110,14 @@ public class DonationBean {
         this.payAt = payAt;
     }
 
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
     public String getWid() {
         return wid;
     }
@@ -129,9 +137,9 @@ public class DonationBean {
         this.payed = donation.getPayed();
         this.payAt = donation.getPayAt() == null ? null : new Date(donation.getPayAt());
         this.wid = donation.getWechater() == null ? null : donation.getWechater().getWid();
+        this.tradeNo = donation.getTradeNo() == null ? null : donation.getTradeNo();
         if (!safe) {
             this.nonce = donation.getNonce() == null ? null : donation.getNonce();
-            this.tradeNo = donation.getTradeNo() == null ? null : donation.getTradeNo();
             this.transactionId = donation.getTransactionId() == null ? null : donation.getTransactionId();
         }
     }
