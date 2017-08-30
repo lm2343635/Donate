@@ -37,7 +37,15 @@ $(document).ready(function () {
                 }
             }]
         });
+
+        $("#pay-money").focus(function () {
+            $("#foot").hide();
+        }).blur(function () {
+            $("#foot").show();
+        });
     });
+
+
 
 });
 

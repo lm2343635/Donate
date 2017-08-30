@@ -60,6 +60,12 @@ $(document).ready(function () {
         }]);
     });
 
+    $("#donate-email, #donate-name").focus(function () {
+        $("#foot").hide();
+    }).blur(function () {
+        $("#foot").show();
+    });
+
 });
 
 function setSex(sex) {
