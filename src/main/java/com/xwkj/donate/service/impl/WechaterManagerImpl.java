@@ -4,11 +4,13 @@ import com.xwkj.common.util.Debug;
 import com.xwkj.common.util.SHA1;
 import com.xwkj.donate.bean.WechaterBean;
 import com.xwkj.donate.domain.Wechater;
+import com.xwkj.donate.service.TokenManager;
 import com.xwkj.donate.service.WechaterManager;
 import com.xwkj.donate.service.common.ManagerTemplate;
 import net.sf.json.JSONObject;
 import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,9 @@ import java.util.*;
 @Service
 @RemoteProxy(name = "WechaterManager")
 public class WechaterManagerImpl extends ManagerTemplate implements WechaterManager {
+
+    @Autowired
+    private TokenManager tokenManager;
 
     @RemoteMethod
     @Transactional
@@ -52,7 +57,7 @@ public class WechaterManagerImpl extends ManagerTemplate implements WechaterMana
     public Map<String, Object> getJsConfig(String url) {
         final String nonceStr = UUID.randomUUID().toString().substring(0, 8);
         final String timestamp = String.valueOf(System.currentTimeMillis());
-        String str = "jsapi_ticket=" + wechatComponent.getTicket() + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + url;
+        String str = "jsapi_ticket=" + tokenManager.getTicket() + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + url;
         final String signature = new SHA1().getDigestOfString(str.getBytes());
         return new HashMap<String, Object>() {{
             put("appId", config.wechat.appId);

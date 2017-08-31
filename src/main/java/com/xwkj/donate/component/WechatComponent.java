@@ -5,6 +5,7 @@ import com.xwkj.common.pay.RequestHandler;
 import com.xwkj.common.util.Debug;
 import com.xwkj.common.util.HttpTool;
 import com.xwkj.donate.bean.JSAPIResult;
+import com.xwkj.donate.service.TokenManager;
 import net.sf.json.JSONObject;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -24,79 +25,11 @@ public class WechatComponent {
     @Autowired
     private ConfigComponent config;
 
-    public static final int RequestInterval = 300;
-
-    // Token and ticket
-    private String token = null;
-    private long tokenUpdate = 0;
-    private String ticket;
-    private long ticketUpdate = 0;
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public long getTokenUpdate() {
-        return tokenUpdate;
-    }
-
-    public void setTokenUpdate(long tokenUpdate) {
-        this.tokenUpdate = tokenUpdate;
-    }
-
-    public void setTicket(String ticket) {
-        this.ticket = ticket;
-    }
-
-    public long getTicketUpdate() {
-        return ticketUpdate;
-    }
-
-    public void setTicketUpdate(long ticketUpdate) {
-        this.ticketUpdate = ticketUpdate;
-    }
+    @Autowired
+    private TokenManager tokenManager;
 
     public WechatComponent() {
         super();
-    }
-
-    public String getToken() {
-        if (token == null) {
-            refreshToken();
-        }
-        if (System.currentTimeMillis() / 1000L - tokenUpdate > RequestInterval) {
-            refreshToken();
-        }
-        return token;
-    }
-
-    public String getTicket() {
-        if (ticket == null) {
-            refreshTicket();
-        }
-        if (System.currentTimeMillis() / 1000L - ticketUpdate > RequestInterval) {
-            refreshTicket();
-        }
-        return ticket;
-    }
-
-    private void refreshToken() {
-        String getTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="
-                + config.wechat.appId + "&secret=" + config.wechat.appSecret;
-        JSONObject tokenResult = JSONObject.fromObject(HttpTool.httpRequest(getTokenUrl));
-        if (tokenResult.get("access_token") == null) {
-            return;
-        }
-        token = tokenResult.getString("access_token");
-        tokenUpdate = System.currentTimeMillis() / 1000L;
-    }
-
-    private void refreshTicket() {
-        String requestUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="
-                + getToken() + "&type=jsapi";
-        JSONObject object = JSONObject.fromObject(HttpTool.httpRequest(requestUrl));
-        ticket = object.getString("ticket");
-        ticketUpdate = System.currentTimeMillis() / 1000L;
     }
 
     public JSONObject getUserInfoByCode(String code) {
@@ -126,7 +59,7 @@ public class WechatComponent {
     // Get user info with cgi-bin API, get full user info for subscribed Wechat user.
     private JSONObject getUserInfo(String openid) {
         String url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token="
-                + getToken() + "&openid=" + openid + "&lang=zh_CN";
+                + tokenManager.getAccessToken() + "&openid=" + openid + "&lang=zh_CN";
         return JSONObject.fromObject(HttpTool.httpRequest(url));
     }
 

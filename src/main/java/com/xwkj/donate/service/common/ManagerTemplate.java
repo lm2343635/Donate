@@ -4,6 +4,7 @@ import com.xwkj.donate.component.ConfigComponent;
 import com.xwkj.donate.component.MailComponent;
 import com.xwkj.donate.component.WechatComponent;
 import com.xwkj.donate.dao.DonationDao;
+import com.xwkj.donate.dao.TokenDao;
 import com.xwkj.donate.dao.WechaterDao;
 import com.xwkj.donate.domain.Wechater;
 import com.xwkj.donate.service.AdminManager;
@@ -21,6 +22,9 @@ public class ManagerTemplate {
 
     @Autowired
     protected MailComponent mailComponent;
+
+    @Autowired
+    protected TokenDao tokenDao;
 
     @Autowired
     protected DonationDao donationDao;
@@ -50,6 +54,14 @@ public class ManagerTemplate {
 
     public void setMailComponent(MailComponent mailComponent) {
         this.mailComponent = mailComponent;
+    }
+
+    public TokenDao getTokenDao() {
+        return tokenDao;
+    }
+
+    public void setTokenDao(TokenDao tokenDao) {
+        this.tokenDao = tokenDao;
     }
 
     public DonationDao getDonationDao() {
