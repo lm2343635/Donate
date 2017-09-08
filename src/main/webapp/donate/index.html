@@ -20,16 +20,21 @@
             cursor: pointer;
         }
 
-        #main-container p {
+        #button-aera {
             position: absolute;
-            bottom: 60px;
-            color: #fff;
-            font-size: 24px;
+            bottom: 70px;
             width: 100%;
             max-width: 500px;
             text-align: center;
-            text-shadow:0 0 0.2em #f4c833,
-            -0 -0 0.2em #f4c833;
+        }
+
+        #button-aera span {
+            background: #e64340;
+            opacity: 0.9;
+            padding: 14px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 18px;
         }
 
         #main-container .top-img {
@@ -43,7 +48,9 @@
     <img class="bg-img" src="/static/images/index-bg.jpg">
     <img class="top-img" src="/static/images/index-top.png">
     <img class="bottom-img" src="/static/images/index-bottom.png">
-    <p>点击屏幕进入下一页</p>
+    <div id="button-aera">
+        <span>点击进入下一页</span>
+    </div>
     <div id="foot">
         <script>$("#foot").load("foot.html");</script>
     </div>
