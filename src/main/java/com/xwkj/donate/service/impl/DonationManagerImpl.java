@@ -126,9 +126,8 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         document.setValue("tradeNo", donation.getTradeNo());
         document.setValue("name", donation.getName());
         document.setValue("sex", donation.getSex() ? config.text.male : config.text.female);
-        document.setValue("money", String.valueOf(donation.getMoney() / 100));
+        document.setValue("money", String.valueOf(donation.getMoney() < 100 ? donation.getMoney() * 1.0 : donation.getMoney() / 100));
         mailComponent.send(donation.getEmail(), config.text.tradeName, document.getDocument());
-
         return true;
     }
 

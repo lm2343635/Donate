@@ -1,5 +1,5 @@
 var pickerData = [];
-for (var year = 1950; year <= 2017; year++) {
+for (var year = 1920; year <= 2017; year++) {
     pickerData[pickerData.length] = {
         label: year + "年",
         value: year
