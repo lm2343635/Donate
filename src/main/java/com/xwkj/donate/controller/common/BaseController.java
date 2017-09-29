@@ -3,6 +3,7 @@ package com.xwkj.donate.controller.common;
 import com.xwkj.donate.component.ConfigComponent;
 import com.xwkj.donate.component.WechatComponent;
 import com.xwkj.donate.service.DonationManager;
+import com.xwkj.donate.service.RedirectManager;
 import com.xwkj.donate.service.WechaterManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,9 @@ public class BaseController {
 
     @Autowired
     protected WechaterManager wechaterManager;
+
+    @Autowired
+    protected RedirectManager redirectManager;
 
     public DonationManager getDonationManager() {
         return donationManager;
@@ -40,4 +44,13 @@ public class BaseController {
     public void setWechaterManager(WechaterManager wechaterManager) {
         this.wechaterManager = wechaterManager;
     }
+
+    public RedirectManager getRedirectManager() {
+        return redirectManager;
+    }
+
+    public void setRedirectManager(RedirectManager redirectManager) {
+        this.redirectManager = redirectManager;
+    }
+
 }

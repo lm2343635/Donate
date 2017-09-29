@@ -4,6 +4,7 @@ import com.xwkj.donate.component.ConfigComponent;
 import com.xwkj.donate.component.MailComponent;
 import com.xwkj.donate.component.WechatComponent;
 import com.xwkj.donate.dao.DonationDao;
+import com.xwkj.donate.dao.RedirectDao;
 import com.xwkj.donate.dao.TokenDao;
 import com.xwkj.donate.dao.WechaterDao;
 import com.xwkj.donate.domain.Wechater;
@@ -31,6 +32,9 @@ public class ManagerTemplate {
 
     @Autowired
     protected WechaterDao wechaterDao;
+
+    @Autowired
+    protected RedirectDao redirectDao;
 
     public ConfigComponent getConfig() {
         return config;
@@ -78,6 +82,14 @@ public class ManagerTemplate {
 
     public void setWechaterDao(WechaterDao wechaterDao) {
         this.wechaterDao = wechaterDao;
+    }
+
+    public RedirectDao getRedirectDao() {
+        return redirectDao;
+    }
+
+    public void setRedirectDao(RedirectDao redirectDao) {
+        this.redirectDao = redirectDao;
     }
 
     public boolean checkAdminSession(HttpSession session) {
