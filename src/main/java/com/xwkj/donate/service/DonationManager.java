@@ -41,10 +41,10 @@ public interface DonationManager {
     /**
      * Pay the donation by Wechat JSAPI.
      *
-     * @param session
+     * @param did
      * @return
      */
-    JSAPIResult pay(HttpSession session);
+    JSAPIResult pay(String did);
 
 
     /**

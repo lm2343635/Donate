@@ -70,18 +70,15 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
 
     @RemoteMethod
     @Transactional
-    public JSAPIResult pay(HttpSession session) {
-        String did = (String) session.getAttribute(DonationManager.DONATION_FLAG);
+    public JSAPIResult pay(String did) {
         Donation donation = donationDao.get(did);
         if (donation == null) {
             Debug.error("Cannot find any donation object from session.");
             return null;
         }
-        String openid = (String) session.getAttribute(WechaterManager.WECHAT_USER_OPEN_ID);
-        if (openid == null) {
-            Debug.error("Cannot find openid from session.");
-            return null;
-        }
+
+        String openid = donation.getWechater().getOpenid();
+
         String tradeNo = donation.getCreateAt() + MathTool.getRandomStr(4);
         String body = config.text.tradeName + donation.getMoney() / 100.0 + "元";
 
@@ -91,8 +88,6 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         // Save nonce, trade no and wechater to persitent store.
         donation.setNonce(result.getNonceStr());
         donation.setTradeNo(tradeNo);
-        Wechater wechater = wechaterDao.getByOpenId(openid);
-        donation.setWechater(wechater);
         donationDao.update(donation);
 
         return result;

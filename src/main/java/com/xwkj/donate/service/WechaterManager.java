@@ -10,24 +10,14 @@ import java.util.Map;
 
 public interface WechaterManager {
 
-    public static final String WECHAT_USER_OPEN_ID = "8897e01543b0297e9e795431c7490030";
-
     /**
      * Register wechat's openId
      *
      * @param code
-     * @param session
+     * @param did
      * @return
      */
-    boolean registerWechatOpenId(String code, HttpSession session);
-
-    /**
-     * Check openid session.
-     *
-     * @param session
-     * @return
-     */
-    boolean checkOpenIdSession(HttpSession session);
+    boolean registerWechatOpenId(String code, String did);
 
     /**
      * Get JS API config

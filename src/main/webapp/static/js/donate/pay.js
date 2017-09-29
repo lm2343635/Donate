@@ -22,7 +22,6 @@ $(document).ready(function () {
         }
 
         WechaterManager.getJsConfig(window.location.href, function(config) {
-
             wx.config({
                 debug: false,
                 appId: config.appId,
@@ -33,8 +32,7 @@ $(document).ready(function () {
             });
 
             wx.ready(function(){
-                DonationManager.pay(function(result) {
-
+                DonationManager.pay(did, function(result) {
                     if (result == null) {
                         weui.confirm("支付错误，返回首页！", function () {
                             location.href = "/";

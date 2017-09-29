@@ -3,6 +3,7 @@ package com.xwkj.donate.service.impl;
 import com.xwkj.common.util.Debug;
 import com.xwkj.common.util.SHA1;
 import com.xwkj.donate.bean.WechaterBean;
+import com.xwkj.donate.domain.Donation;
 import com.xwkj.donate.domain.Wechater;
 import com.xwkj.donate.service.TokenManager;
 import com.xwkj.donate.service.WechaterManager;
@@ -27,10 +28,10 @@ public class WechaterManagerImpl extends ManagerTemplate implements WechaterMana
 
     @RemoteMethod
     @Transactional
-    public boolean registerWechatOpenId(String code, HttpSession session) {
+    public boolean registerWechatOpenId(String code, String did) {
         JSONObject userInfo = wechatComponent.getUserInfoByCode(code);
         if (userInfo == null) {
-            Debug.error("user info is nulls");
+            Debug.error("user info is null");
             return false;
         }
         String openid = userInfo.getString("openid");
@@ -44,13 +45,14 @@ public class WechaterManagerImpl extends ManagerTemplate implements WechaterMana
             wechater.setUpdateAt(System.currentTimeMillis());
             wechaterDao.update(wechater);
         }
-        session.setAttribute(WECHAT_USER_OPEN_ID, openid);
+        Donation donation = donationDao.get(did);
+        if (donation == null) {
+            Debug.error("Cannot find a donation by this did");
+            return false;
+        }
+        donation.setWechater(wechater);
+        donationDao.update(donation);
         return true;
-    }
-
-    @RemoteMethod
-    public boolean checkOpenIdSession(HttpSession session) {
-        return session.getAttribute(WECHAT_USER_OPEN_ID) != null;
     }
 
     @RemoteMethod

@@ -19,16 +19,9 @@ import java.util.UUID;
 public class OAuthController extends BaseController {
 
     @RequestMapping(value = "/authorize", method = RequestMethod.GET)
-    public void authorize(@RequestParam String redirect, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void authorize(@RequestParam String did, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String [] strings = request.getRequestURL().toString().split("://");
         String base = strings[0] + "://" + strings[1].split("/")[0];
-
-        // Add redirect to redirects.
-        String state = redirectManager.push(base + redirect);
-        if (state == null) {
-            response.sendRedirect("/donate/link.html");
-            return;
-        }
 
         // Create redirect URI for Wechat OAuth.
         // If auth proxy is null or empty, use OAuthController to receive code directly.
@@ -37,21 +30,19 @@ public class OAuthController extends BaseController {
             redirect_uri = URLEncoder.encode(base + "/oauth/register", "utf-8");
         }
         String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + config.wechat.appId
-                + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=" + state + "#wechat_redirect";
+                + "&redirect_uri=" + redirect_uri + "&response_type=code&scope=snsapi_userinfo&state=" + did + "#wechat_redirect";
         response.sendRedirect(url);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public void registerOpenIdSession(@RequestParam String state, @RequestParam String code,
                                       HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String redirect = redirectManager.pop(state);
-        if (redirect == null) {
+        if (state == null) {
             response.sendRedirect("/donate/link.html");
             return;
         }
-
-        if (wechaterManager.registerWechatOpenId(code, request.getSession())) {
-            response.sendRedirect(redirect);
+        if (wechaterManager.registerWechatOpenId(code, state)) {
+            response.sendRedirect("/donate/pay.html?did=" + state);
         } else {
             response.sendRedirect("/error/oauth.html");
         }

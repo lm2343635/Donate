@@ -32,14 +32,10 @@ public class WechatController extends BaseController {
     public void pay(@RequestParam String did, @RequestParam int money, HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (!donationManager.setMoney(did, money)) {
             // Set money failed.
-
+            response.sendRedirect("/donate/link.html");
             return;
         }
-        // Save donation id to session.
-        request.getSession().setAttribute(DonationManager.DONATION_FLAG, did);
-        // Get user info.
-        String redirect = URLEncoder.encode("/donate/pay.html?did=" + did, "utf-8");
-        response.sendRedirect("/oauth/authorize?redirect=" + redirect);
+        response.sendRedirect("/oauth/authorize?did=" + did);
     }
 
     @RequestMapping(value = "/payed", method = RequestMethod.POST)
