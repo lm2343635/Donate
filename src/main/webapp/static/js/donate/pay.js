@@ -17,7 +17,9 @@ $(document).ready(function () {
         });
 
         if (donation.payed) {
-            weui.alert("已支付！");
+            weui.confirm("已支付，查看证书！", function () {
+                location.href = "certificate.html?did=" + did;
+            });
             return;
         }
 
