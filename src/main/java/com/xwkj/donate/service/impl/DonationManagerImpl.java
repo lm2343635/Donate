@@ -63,6 +63,10 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
             Debug.error("This donation has been payed or illegal money!");
             return false;
         }
+        if (money < config.global.min) {
+            Debug.error("Money should be larger than min.");
+            return false;
+        }
         donation.setMoney(money);
         donationDao.update(donation);
         return true;

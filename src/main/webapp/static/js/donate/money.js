@@ -1,4 +1,5 @@
 var did = request("did");
+var min = 0;
 
 $(document).ready(function () {
 
@@ -9,13 +10,18 @@ $(document).ready(function () {
         }
     });
 
+    ConfigManager.getConfigObject(function (config) {
+        min = config["global"]["min"];
+        $("#pay-defaults span").text(min);
+    });
+
     $("#pay-defaults").click(function () {
-        setPayMoney(11000);
+        setPayMoney(min * 100);
     });
 
     $("#pay-others").click(function () {
         weui.confirm("<input id='pay-money' type='number' placeholder='请填写整数金额'>", {
-            title: "请输入捐款金额",
+            title: "捐款金额需大于" + min + "元",
             buttons: [{
                 label: "取消",
                 type: "default",
@@ -29,8 +35,12 @@ $(document).ready(function () {
                         weui.topTips("金额必须为合法数字！");
                         return;
                     }
-                    if (money <= 0 || money > 10000000) {
-                        weui.topTips("捐款金额在一分到一千万元之间！");
+                    if (money < min) {
+                        weui.topTips("捐款金额需大于" + min + "元！");
+                        return;
+                    }
+                    if (money > 10000000) {
+                        weui.topTips("捐款金额不能超过一千万元之间！");
                         return;
                     }
                     setPayMoney(parseInt(money * 100));

@@ -1,7 +1,8 @@
 {
   "global": {
     "httpProtocol": "http",
-    "domain": "donate.mushare.cn"
+    "domain": "donate.mushare.cn",
+    "min": "0.01"
   },
   "text": {
     "tradeName": "龙泉中学110周年校庆",
@@ -9,6 +10,7 @@
     "female": "女士"
   },
   "mail": {
+    "using": "false",
     "sender": "test@mushare.cn",
     "smtp": "smtp.ym.163.com",
     "username": "test@mushare.cn",
