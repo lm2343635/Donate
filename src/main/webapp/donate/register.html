@@ -14,6 +14,7 @@
     <script src="/static/js/weui.min.js"></script>
     <script src="/static/js/tools.js"></script>
     <script src="/dwr/engine.js"></script>
+    <script src="/dwr/interface/ConfigManager.js"></script>
     <script src="/dwr/interface/DonationManager.js"></script>
     <script src="/static/js/donate/register.js"></script>
     <style>
@@ -38,6 +39,10 @@
         #donate-year-selector {
             cursor: pointer;
         }
+
+        #cell-email {
+            /*display: none;*/
+        }
     </style>
 </head>
 <body>
@@ -46,7 +51,7 @@
     <img class="top-img" src="/static/images/register-top.png">
     <div class="weui-tab__panel">
         <div class="weui-cells weui-cells_form">
-            <div class="weui-cell">
+            <div id="cell-email" class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label></div>
                 <div class="weui-cell__bd">
                     <input id="donate-email" class="weui-input" type="email" placeholder="捐赠证书发送到该邮箱">

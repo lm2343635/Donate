@@ -6,18 +6,29 @@ for (var year = 1920; year <= 2017; year++) {
     };
 }
 
+var usingEmail = false;
+
 $(document).ready(function () {
+
+    ConfigManager.getConfigObject(function (config) {
+        usingEmail = config["mail"]["using"] == "true";
+        if (!usingEmail) {
+            $("#cell-email").remove();
+        }
+    });
 
     $("#donate-register").click(function() {
         var name = $("#donate-name").val();
         var sex = $("#donate-sex").val();
         var year = $("#donate-year").val();
         var email = $("#donate-email").val();
-        if (name == "" || sex == "" || year == "" || email == "") {
+        if (name == "" || sex == "" || year == "" || (usingEmail && email == "")) {
             weui.alert("请填写所有表单项！");
             return;
         }
-
+        if (!usingEmail) {
+            email = "";
+        }
         DonationManager.register(name, sex, year, email, function (did) {
             if (did == null) {
                 return;

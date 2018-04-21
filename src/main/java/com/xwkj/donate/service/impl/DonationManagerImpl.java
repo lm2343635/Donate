@@ -119,14 +119,16 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         donationDao.update(donation);
 
         // Send a certificate email to the donater.
-        MengularDocument document = new MengularDocument(config.rootPath, 0, "mail/certificate.html", null);
-        document.setValue("httpProtocol", config.global.httpProtocol);
-        document.setValue("domain", config.global.domain);
-        document.setValue("tradeNo", donation.getTradeNo());
-        document.setValue("name", donation.getName());
-        document.setValue("sex", donation.getSex() ? config.text.male : config.text.female);
-        document.setValue("money", String.valueOf((donation.getMoney() < 100 ? donation.getMoney() * 1.0 : donation.getMoney()) / 100));
-        mailComponent.send(donation.getEmail(), config.text.tradeName, document.getDocument());
+        if (!donation.getEmail().equals("")) {
+            MengularDocument document = new MengularDocument(config.rootPath, 0, "mail/certificate.html", null);
+            document.setValue("httpProtocol", config.global.httpProtocol);
+            document.setValue("domain", config.global.domain);
+            document.setValue("tradeNo", donation.getTradeNo());
+            document.setValue("name", donation.getName());
+            document.setValue("sex", donation.getSex() ? config.text.male : config.text.female);
+            document.setValue("money", String.valueOf((donation.getMoney() < 100 ? donation.getMoney() * 1.0 : donation.getMoney()) / 100));
+            mailComponent.send(donation.getEmail(), config.text.tradeName, document.getDocument());
+        }
         return true;
     }
 
