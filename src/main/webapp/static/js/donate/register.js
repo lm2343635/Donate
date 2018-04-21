@@ -10,8 +10,8 @@ var usingEmail = false;
 
 $(document).ready(function () {
 
-    ConfigManager.getConfigObject(function (config) {
-        usingEmail = config["mail"]["using"] == "true";
+    DonationManager.usingEmail(function (using) {
+        usingEmail = using;
         if (!usingEmail) {
             $("#cell-email").remove();
         }

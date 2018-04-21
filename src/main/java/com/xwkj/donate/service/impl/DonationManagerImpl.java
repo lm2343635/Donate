@@ -39,6 +39,16 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
     }
 
     @RemoteMethod
+    public boolean usingEmail() {
+        return config.mail.using;
+    }
+
+    @RemoteMethod
+    public int getMinMoney() {
+        return config.global.min;
+    }
+
+    @RemoteMethod
     @Transactional
     public String register(String name, boolean sex, int year, String email) {
         Donation donation = new Donation();

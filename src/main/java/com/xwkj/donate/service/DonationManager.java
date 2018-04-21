@@ -18,6 +18,19 @@ public interface DonationManager {
      */
     DonationBean get(String did);
 
+    /**
+     * Get using email state.
+     *
+     * @return
+     */
+    boolean usingEmail();
+
+    /**
+     * Get donation min money.
+     *
+     * @return
+     */
+    int getMinMoney();
 
     /**
      * Register and create a donation.

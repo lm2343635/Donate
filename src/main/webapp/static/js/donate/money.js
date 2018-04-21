@@ -10,18 +10,18 @@ $(document).ready(function () {
         }
     });
 
-    ConfigManager.getConfigObject(function (config) {
-        min = config["global"]["min"];
-        $("#pay-defaults span").text(min);
+    DonationManager.getMinMoney(function (_min) {
+        min = _min;
+        $("#pay-defaults span").text(min / 100);
     });
 
     $("#pay-defaults").click(function () {
-        setPayMoney(min * 100);
+        setPayMoney(min);
     });
 
     $("#pay-others").click(function () {
         weui.confirm("<input id='pay-money' type='number' placeholder='请填写整数金额'>", {
-            title: "捐款金额需大于" + min + "元",
+            title: "捐款金额需大于" + min / 100 + "元",
             buttons: [{
                 label: "取消",
                 type: "default",
@@ -36,7 +36,7 @@ $(document).ready(function () {
                         return;
                     }
                     if (money < min) {
-                        weui.topTips("捐款金额需大于" + min + "元！");
+                        weui.topTips("捐款金额需大于" + min / 100 + "元！");
                         return;
                     }
                     if (money > 10000000) {

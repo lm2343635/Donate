@@ -11,12 +11,12 @@ public class Global {
     public String domain;
 
     // Min donation money;
-    public double min;
+    public int min;
 
     public Global(JSONObject object) {
         this.httpProtocol = object.getString("httpProtocol");
         this.domain = object.getString("domain");
-        this.min = object.getDouble("min");
+        this.min = object.getInt("min");
     }
 
 }
