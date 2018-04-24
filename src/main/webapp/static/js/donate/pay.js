@@ -1,7 +1,7 @@
 var did = request("did");
 
 $(document).ready(function () {
-    
+
     DonationManager.usingEmail(function (using) {
         if (!using) {
             $("#cell-email").remove();

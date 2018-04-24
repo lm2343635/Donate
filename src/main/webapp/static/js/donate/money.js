@@ -35,7 +35,7 @@ $(document).ready(function () {
                         weui.topTips("金额必须为合法数字！");
                         return;
                     }
-                    if (money < min) {
+                    if (money * 100 < min) {
                         weui.topTips("捐款金额需大于" + min / 100 + "元！");
                         return;
                     }
