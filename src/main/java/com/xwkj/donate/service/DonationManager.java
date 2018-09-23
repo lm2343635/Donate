@@ -85,4 +85,18 @@ public interface DonationManager {
      */
     List<DonationBean> getPayedDonations(HttpSession session);
 
+    /**
+     * Get count of all payed donations.
+     * @return
+     */
+    int getPayedCount();
+
+    /**
+     * Get payed donations by page.
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<DonationBean> getPayedByPage(int page, int pageSize);
+
 }

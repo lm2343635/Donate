@@ -22,4 +22,18 @@ public interface DonationDao extends BaseDao<Donation> {
      */
     List<Donation> findPayed();
 
+    /**
+     *
+     * @return
+     */
+    int getPayedCount();
+
+    /**
+     *
+     * @param pageSize
+     * @param offset
+     * @return
+     */
+    List<Donation> findByPage(int offset, int pageSize);
+
 }

@@ -154,4 +154,16 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         return donationBeans;
     }
 
+    public int getPayedCount() {
+        return donationDao.getPayedCount();
+    }
+
+    public List<DonationBean> getPayedByPage(int page, int pageSize) {
+        List<DonationBean> donationBeans = new ArrayList<DonationBean>();
+        int offset = (page - 1) * pageSize;
+        for (Donation donation : donationDao.findByPage(offset, pageSize)) {
+            donationBeans.add(new DonationBean(donation, true));
+        }
+        return donationBeans;
+    }
 }
