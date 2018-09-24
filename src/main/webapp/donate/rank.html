@@ -35,6 +35,17 @@
         .weui-cell__ft {
             color: #ff3b30;
         }
+
+        #page-list {
+            position: fixed;
+            bottom: 60px;
+            width: 100%;
+        }
+
+        #page-list button {
+            padding: 0 10px;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -49,9 +60,9 @@
             <div class="weui-cell__ft">${money}$元</div>
         </div>
     </div>
-    <div>
-        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_warn">1</a>
-        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default">2</a>
+    <div id="page-list">
+        <button class="weui-btn weui-btn_mini weui-btn_warn mengular-template selected-page-template" onclick="loadDonations(${page}$);">${page}$</button>
+        <button class="weui-btn weui-btn_mini weui-btn_default mengular-template page-template" onclick="loadDonations(${page}$);">${page}$</button>
     </div>
     <div id="foot">
         <script>$("#foot").load("foot.html");</script>
