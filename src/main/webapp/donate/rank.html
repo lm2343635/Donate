@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>光荣榜</title>
+    <link rel="Shortcut Icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="/static/css/weui.min.css">
+    <link rel="stylesheet" href="/static/css/donate.css">
+    <link rel="stylesheet" href="/static/css/mengular.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mengular.js"></script>
+    <script src="/dwr/engine.js"></script>
+    <script src="/dwr/interface/DonationManager.js"></script>
+    <script src="/static/js/donate/rank.js"></script>
+    <style>
+        #main-container .top-img {
+            margin-top: 20px;
+        }
+
+        .weui-btn-area a {
+            width: 50%;
+        }
+
+        #rank-title {
+            padding: 20px;
+            text-align: center;
+            color: #ff3b30;
+        }
+
+        .weui-cells {
+            background: transparent;
+        }
+
+        .weui-cell__ft {
+            color: #ff3b30;
+        }
+    </style>
+</head>
+<body>
+<div id="main-container">
+    <img class="bg-img" src="/static/images/donate-bg.jpg">
+    <h1 id="rank-title">捐赠光荣榜</h1>
+    <div id="donation-list" class="weui-cells">
+        <div class="weui-cell mengular-template donation-template">
+            <div class="weui-cell__bd">
+                <p>${name}$ ${sex}$</p>
+            </div>
+            <div class="weui-cell__ft">${money}$元</div>
+        </div>
+    </div>
+    <div>
+        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_warn">1</a>
+        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default">2</a>
+    </div>
+    <div id="foot">
+        <script>$("#foot").load("foot.html");</script>
+    </div>
+</div>
+
+</body>
+</html>

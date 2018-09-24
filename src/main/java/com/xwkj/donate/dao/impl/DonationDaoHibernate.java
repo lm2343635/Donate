@@ -44,7 +44,7 @@ public class DonationDaoHibernate extends BaseHibernateDaoSupport<Donation> impl
     }
 
     public List<Donation> findByPage(int offset, int pageSize) {
-        final String hql = "from Donation where payed = true order by money";
+        final String hql = "from Donation where payed = true order by money desc";
         return findByPage(hql, offset, pageSize);
     }
 }

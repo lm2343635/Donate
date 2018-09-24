@@ -154,10 +154,12 @@ public class DonationManagerImpl extends ManagerTemplate implements DonationMana
         return donationBeans;
     }
 
+    @RemoteMethod
     public int getPayedCount() {
         return donationDao.getPayedCount();
     }
 
+    @RemoteMethod
     public List<DonationBean> getPayedByPage(int page, int pageSize) {
         List<DonationBean> donationBeans = new ArrayList<DonationBean>();
         int offset = (page - 1) * pageSize;
