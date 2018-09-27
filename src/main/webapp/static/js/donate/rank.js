@@ -1,4 +1,4 @@
-var pageSize = 20;
+var pageSize = 15;
 
 $(document).ready(function () {
     loadDonations(1);
@@ -23,7 +23,8 @@ function loadDonations(page) {
             $("#donation-list").mengular(".donation-template", {
                 name: donation.name,
                 sex: donation.sex ? "先生" : "女士",
-                money: donation.money / 100.0
+                money: donation.money / 100.0,
+                createAt: donation.createAt.format(DATE_HOUR_MINUTE_FORMAT)
             });
         }
 

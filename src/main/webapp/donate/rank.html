@@ -10,10 +10,15 @@
     <link rel="stylesheet" href="/static/css/mengular.css">
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/mengular.js"></script>
+    <script src="/static/js/tools.js"></script>
     <script src="/dwr/engine.js"></script>
     <script src="/dwr/interface/DonationManager.js"></script>
     <script src="/static/js/donate/rank.js"></script>
     <style>
+        body {
+            background: url("/static/images/donate-bg.jpg");
+        }
+
         #main-container .top-img {
             margin-top: 20px;
         }
@@ -40,22 +45,26 @@
             position: fixed;
             bottom: 60px;
             width: 100%;
+            z-index: 10;
         }
 
         #page-list button {
             padding: 0 10px;
-            margin-left: 10px;
+            margin-left: 5px;
+        }
+
+        #donation-list {
+            padding-bottom: 100px;
         }
     </style>
 </head>
 <body>
 <div id="main-container">
-    <img class="bg-img" src="/static/images/donate-bg.jpg">
     <h1 id="rank-title">捐赠光荣榜</h1>
     <div id="donation-list" class="weui-cells">
         <div class="weui-cell mengular-template donation-template">
             <div class="weui-cell__bd">
-                <p>${name}$ ${sex}$</p>
+                <p>${createAt}$ ${name}$ ${sex}$</p>
             </div>
             <div class="weui-cell__ft">${money}$元</div>
         </div>
