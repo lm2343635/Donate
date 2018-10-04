@@ -62,9 +62,9 @@
 <div id="main-container">
     <h1 id="rank-title">捐赠光荣榜</h1>
     <div id="donation-list" class="weui-cells">
-        <div class="weui-cell mengular-template donation-template">
+        <div id="${did}$" class="weui-cell mengular-template donation-template">
             <div class="weui-cell__bd">
-                <p>${createAt}$ ${name}$ ${sex}$</p>
+                <p>${createAt}$ <a href="certificate.html?did=${did}$">${name}$ ${sex}$</a></p>
             </div>
             <div class="weui-cell__ft">${money}$元</div>
         </div>
